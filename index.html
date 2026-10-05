@@ -1,0 +1,576 @@
+﻿<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beshariq Farel</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b132b;
+      color: #f8fafc;
+      padding-bottom: 120px;
+    }
+    a { text-decoration: none; }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 24px;
+      background: rgba(11, 19, 43, 0.96);
+      border-bottom: 1px solid #1e293b;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-icon {
+      width: 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ff5a1f, #ffb703);
+      font-size: 22px;
+    }
+    .logo h1 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 800;
+    }
+    .logo p {
+      margin: 2px 0 0;
+      font-size: 11px;
+      color: #94a3b8;
+    }
+    .phones-header {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .phone-btn {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 8px;
+      background: #ff5a1f;
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .hero {
+      text-align: center;
+      padding: 42px 20px 30px;
+      background: linear-gradient(to bottom, #0b132b, #1c2541);
+      border-bottom: 1px solid #1e293b;
+    }
+    .badge {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      background: rgba(255, 183, 3, 0.12);
+      border: 1px solid rgba(255, 183, 3, 0.25);
+      color: #ffb703;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .hero h2 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 6vw, 42px);
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+    .hero h2 span { color: #ffb703; }
+    .hero p {
+      max-width: 680px;
+      margin: 0 auto;
+      color: #cbd5e1;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .section-title {
+      margin: 0 0 20px;
+      padding-left: 10px;
+      border-left: 4px solid #ff5a1f;
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+    .card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 18px;
+      border-radius: 16px;
+      background: #1c2541;
+      border: 1px solid #334155;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: #ff5a1f;
+    }
+    .card h4 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: #fff;
+    }
+    .card p {
+      margin: 0;
+      color: #94a3b8;
+      font-size: 12px;
+    }
+    .card-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 18px;
+      padding-top: 12px;
+      border-top: 1px solid #334155;
+    }
+    .price {
+      color: #ffb703;
+      font-weight: 800;
+      font-size: 16px;
+    }
+    .add-btn {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 8px;
+      background: #ff5a1f;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .add-btn:hover { background: #e04810; }
+    .drinks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-bottom: 36px;
+    }
+    .drink-box {
+      padding: 20px;
+      border-radius: 16px;
+      background: #1c2541;
+      border: 1px solid #334155;
+    }
+    .drink-box h4 {
+      padding-bottom: 8px;
+      margin: 0 0 12px;
+      border-bottom: 1px solid #334155;
+      color: #ffb703;
+      font-size: 16px;
+    }
+    .drink-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px dashed rgba(255,255,255,0.08);
+      color: #e2e8f0;
+      font-size: 14px;
+    }
+    .drink-item button {
+      width: 28px;
+      height: 28px;
+      border: none;
+      border-radius: 6px;
+      background: #334155;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .drink-item button:hover { background: #ff5a1f; }
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .room-box {
+      padding: 16px 12px;
+      text-align: center;
+      border-radius: 12px;
+      background: #1c2541;
+      border: 1px solid #334155;
+    }
+    .room-box strong {
+      display: block;
+      font-size: 15px;
+      color: #f8fafc;
+    }
+    .room-box span {
+      display: block;
+      margin-top: 6px;
+      font-size: 11px;
+      color: #10b981;
+    }
+    .contact-box {
+      padding: 26px;
+      border-radius: 20px;
+      background: #1c2541;
+      border: 1px solid #334155;
+    }
+    .info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 18px;
+    }
+    .info-list li {
+      margin-bottom: 10px;
+      font-size: 15px;
+      color: #e2e8f0;
+    }
+    .info-list strong { color: #fff; }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      color: #cbd5e1;
+      font-size: 12px;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      background: #0b132b;
+      color: white;
+      font-size: 14px;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #10b981;
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .note-price {
+      margin: 0 0 18px;
+      text-align: center;
+      color: #ffb703;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    #cart-bar {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(92%, 520px);
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: #1c2541;
+      border: 2px solid #ff5a1f;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+      z-index: 100;
+    }
+    .cart-order-btn {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 10px;
+      background: #ff5a1f;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .phones-header {
+        justify-content: center;
+      }
+      .contact-box {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <div class="logo-icon">🐟</div>
+      <div>
+        <h1>BESHARIQ FAREL</h1>
+        <p>Shahrixon tumani, Beshariq sanatoriyasi</p>
+      </div>
+    </div>
+
+    <div class="phones-header">
+      <a href="tel:+998937732227" class="phone-btn">93 773-22-27</a>
+      <a href="tel:+998930021782" class="phone-btn">93 002-17-82</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <span class="badge">⭐️ Mazali baliqlar va taomlar</span>
+    <h2>BESHARIQ <span>FAREL</span></h2>
+    <p>12 ta shinam va ozoda xonalarimizda yaqinlaringiz bilan birga maroqli dam olib, mazali taomlardan bahramand bo'ling.</p>
+  </section>
+
+  <main class="container">
+    <h3 class="section-title">🐟 Baliqlar va taomlar menyusi</h3>
+    <div class="grid" id="food-container"></div>
+
+    <h3 class="section-title">🥤 Ichimliklar menyusi</h3>
+    <div class="drinks-grid">
+      <div class="drink-box">
+        <h4>🧃 Energetik va gazli ichimliklar</h4>
+        <div id="drinks-energetik"></div>
+      </div>
+      <div class="drink-box">
+        <h4>🥤 0.5 L ichimliklar</h4>
+        <div id="drinks-05"></div>
+      </div>
+      <div class="drink-box">
+        <h4>🍹 Boshqa ichimliklar</h4>
+        <div id="drinks-other"></div>
+      </div>
+    </div>
+
+    <p class="note-price">💰 Narxlar so‘mda ko‘rsatilgan.</p>
+
+    <h3 class="section-title">🏠 12 ta shinam xona</h3>
+    <div class="rooms-grid" id="rooms-grid"></div>
+
+    <div class="contact-box">
+      <h3 class="section-title" style="margin-bottom: 16px;">📍 Manzil va murojaat</h3>
+      <ul class="info-list">
+        <li><strong>Manzil:</strong> Andijon viloyati, Shahrixon tumani</li>
+        <li><strong>Mo'ljal:</strong> Beshariq sanatoriyasi yonida</li>
+        <li><strong>Murojaat uchun tel:</strong> 93 773-22-27 | 93 002-17-82</li>
+      </ul>
+
+      <h3 class="section-title" style="margin: 24px 0 16px;">📅 Xona band qilish</h3>
+      <form onsubmit="submitBooking(event)">
+        <div class="form-group">
+          <label>Ismingiz</label>
+          <input type="text" id="book-name" required placeholder="Ismingizni kiriting" />
+        </div>
+        <div class="form-group">
+          <label>Telefon raqamingiz</label>
+          <input type="tel" id="book-phone" required placeholder="+998 90 123 45 67" />
+        </div>
+        <div class="form-group">
+          <label>Xona tanlang</label>
+          <select id="book-room">
+            <option value="1-xona">1-xona</option>
+            <option value="2-xona">2-xona</option>
+            <option value="3-xona">3-xona</option>
+            <option value="4-xona">4-xona</option>
+            <option value="5-xona">5-xona</option>
+            <option value="6-xona">6-xona</option>
+            <option value="7-xona">7-xona</option>
+            <option value="8-xona">8-xona</option>
+            <option value="9-xona">9-xona</option>
+            <option value="10-xona">10-xona</option>
+            <option value="11-xona">11-xona</option>
+            <option value="12-xona">12-xona</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Kelish vaqti</label>
+          <input type="time" id="book-time" required />
+        </div>
+        <button type="submit" class="submit-btn">Telegram orqali bron qilish</button>
+      </form>
+    </div>
+  </main>
+
+  <div id="cart-bar">
+    <div>
+      <div style="font-size: 12px; color: #94a3b8;">Jami buyurtma:</div>
+      <div style="font-size: 18px; font-weight: 700; color: #ffb703;" id="cart-total">0 so'm</div>
+    </div>
+    <button class="cart-order-btn" onclick="sendCartOrder()">Buyurtma berish</button>
+  </div>
+
+  <script>
+    const foods = [
+      { name: 'Farel', price: 135000, tag: 'VIP baliq' },
+      { name: 'Oq baliq', price: 45000, tag: 'Sersuv va qovurilgan' },
+      { name: 'Sazan', price: 65000, tag: 'Mazali va xush ta’m' },
+      { name: 'Buxarski', price: 78000, tag: 'Maxsus retsept' },
+      { name: 'Amur', price: 85000, tag: 'Yumshoq go’shtli' },
+      { name: 'Dengiz', price: 100000, tag: 'Oliy navli' },
+      { name: 'Qanot', price: 78000, tag: 'Qarsillama qanotlar' },
+      { name: 'KFS', price: 78000, tag: 'KFS uslubida' },
+      { name: 'Bonka sho\'rva', price: 45000, tag: 'Issiq va mazali' }
+    ];
+
+    const drinksEnergetik = [
+      { name: 'Raya', price: 8000 },
+      { name: 'Royal', price: 8000 },
+      { name: 'Flash', price: 12000 },
+      { name: '18+', price: 12000 },
+      { name: 'Moxito', price: 12000 },
+      { name: 'Panda', price: 12000 },
+      { name: 'Garilla', price: 12000 },
+      { name: 'Adrenalin', price: 16000 }
+    ];
+
+    const drinks05 = [
+      { name: 'Pepsi 0.5 L', price: 8000 },
+      { name: 'Sprite 0.5 L', price: 8000 },
+      { name: 'Fanta 0.5 L', price: 8000 },
+      { name: 'Family 0.5 L', price: 5000 },
+      { name: 'Ays 0.5 L', price: 8000 },
+      { name: 'Sochniy Dalina 0.5 L', price: 8000 }
+    ];
+
+    const drinksOther = [
+      { name: 'Garden', price: 18000 },
+      { name: 'Flavis', price: 15000 },
+      { name: 'Kavsar', price: 8000 },
+      { name: 'Dena', price: 18000 },
+      { name: 'Micco', price: 12000 },
+      { name: 'Ays katta', price: 12000 }
+    ];
+
+    let cart = {};
+
+    function formatPrice(value) {
+      return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' so\'m';
+    }
+
+    function renderFoods() {
+      const foodContainer = document.getElementById('food-container');
+      foods.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div>
+            <h4>${item.name}</h4>
+            <p>${item.tag}</p>
+          </div>
+          <div class="card-bottom">
+            <span class="price">${formatPrice(item.price)}</span>
+            <button class="add-btn" type="button" data-name="${item.name}" data-price="${item.price}">+ Qo\'shish</button>
+          </div>
+        `;
+        card.querySelector('.add-btn').addEventListener('click', () => addToCart(item.name, item.price));
+        foodContainer.appendChild(card);
+      });
+    }
+
+    function renderDrinkList(id, list) {
+      const container = document.getElementById(id);
+      list.forEach(item => {
+        const row = document.createElement('div');
+        row.className = 'drink-item';
+        row.innerHTML = `
+          <span>${item.name} — ${formatPrice(item.price)}</span>
+          <button type="button" data-name="${item.name}" data-price="${item.price}">+</button>
+        `;
+        row.querySelector('button').addEventListener('click', () => addToCart(item.name, item.price));
+        container.appendChild(row);
+      });
+    }
+
+    function renderRooms() {
+      const roomsGrid = document.getElementById('rooms-grid');
+      for (let i = 1; i <= 12; i++) {
+        const roomCard = document.createElement('div');
+        roomCard.className = 'room-box';
+        roomCard.innerHTML = `<strong>${i}-xona</strong><span>Bosh</span>`;
+        roomsGrid.appendChild(roomCard);
+      }
+    }
+
+    function addToCart(name, price) {
+      if (cart[name]) {
+        cart[name].qty += 1;
+      } else {
+        cart[name] = { price, qty: 1 };
+      }
+      updateCart();
+    }
+
+    function updateCart() {
+      let total = 0;
+      let count = 0;
+
+      for (const name in cart) {
+        total += cart[name].price * cart[name].qty;
+        count += cart[name].qty;
+      }
+
+      document.getElementById('cart-total').textContent = formatPrice(total);
+      document.getElementById('cart-bar').style.display = count > 0 ? 'flex' : 'none';
+    }
+
+    function sendCartOrder() {
+      if (Object.keys(cart).length === 0) {
+        alert('Hech narsa tanlanmagan.');
+        return;
+      }
+
+      let text = 'Beshariq Farel — Buyurtma:\n\n';
+      let total = 0;
+
+      for (const name in cart) {
+        const itemTotal = cart[name].price * cart[name].qty;
+        total += itemTotal;
+        text += `${name} x${cart[name].qty} — ${formatPrice(itemTotal)}\n`;
+      }
+
+      text += `\nJami: ${formatPrice(total)}`;
+      window.open(`https://t.me/share/url?url=&text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    function submitBooking(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('book-name').value.trim();
+      const phone = document.getElementById('book-phone').value.trim();
+      const room = document.getElementById('book-room').value;
+      const time = document.getElementById('book-time').value;
+
+      const text = `Beshariq Farel — Xona bron:\nIsm: ${name}\nTelefon: ${phone}\nXona: ${room}\nKelish vaqti: ${time}`;
+      window.open(`https://t.me/share/url?url=&text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    renderFoods();
+    renderDrinkList('drinks-energetik', drinksEnergetik);
+    renderDrinkList('drinks-05', drinks05);
+    renderDrinkList('drinks-other', drinksOther);
+    renderRooms();
+    updateCart();
+  </script>
+</body>
+</html>
+fayli chima
